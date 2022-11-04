@@ -49,6 +49,7 @@ void forward(listint_t **list, listint_t **prv, listint_t **nxt, int *swap)
 {
 	listint_t *prev = *prv;
 	listint_t *next = *nxt;
+	int i = 0;
 
 	while (next)
 	{
@@ -71,10 +72,16 @@ void forward(listint_t **list, listint_t **prv, listint_t **nxt, int *swap)
 				next = next->next;
 			}
 			*swap = 1;
+			if (i == 0)
+			{
+				*list = (*list)->prev;
+				i++;
+			}
 			print_list(*list);
 		}
 		else
 		{
+			i++;
 			prev = prev->next;
 			next = next->next;
 		}
