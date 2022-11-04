@@ -25,9 +25,11 @@ void selection_sort(int *array, size_t size)
 			idx = j;
 			swap = 1;
 		}
-		array[idx] = array[i];
-		array[i] = temp;
 		if (swap == 1)
+		{
+			array[idx] = array[i];
+			array[i] = temp;
 			print_array(array, size);
+		}
 	}
 }
