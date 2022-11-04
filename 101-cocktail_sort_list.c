@@ -10,7 +10,7 @@ void backward(listint_t **list, listint_t **prv, listint_t **nxt, int *swap);
 void cocktail_sort_list(listint_t **list)
 {
 	listint_t *prev, *next;
-	int swap = 1, last = 1, i;
+	int swap = 1;
 
 	if (list == NULL || *list == NULL || (*list)->next == NULL)
 		return;
@@ -24,12 +24,8 @@ void cocktail_sort_list(listint_t **list)
 
 		forward(list, &prev, &next, &swap);
 
-		last++;
-		for (i = last; i > 0; i--)
-		{
-			next = prev;
-			prev = prev->prev;
-		}
+		next = prev;
+		prev = prev->prev;
 
 		backward(list, &prev, &next, &swap);
 
