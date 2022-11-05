@@ -90,7 +90,7 @@ void init_rad(int **rad, int *counter, int *dup)
 			rad[i] = malloc(sizeof(int) * counter[i]);
 			if (rad[i] == NULL)
 			{
-				for (i -= 1; i >= 0; i--)
+				for (; i >= 0; i--)
 				{
 					if (rad[i] != NULL)
 						free(rad[i]);
