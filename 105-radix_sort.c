@@ -94,14 +94,21 @@ void init_rad(int **rad, int *counter)
  */
 void swap(int **rad, int *array, int *counter, int size)
 {
-	int k = 0, i, j;
+	int k = 0, i, j, swap = 0;
 
 	for (i = 0; i < 10; i++)
 	{
 		if (rad[i] == NULL)
 			continue;
 		for (j = 0; j < counter[i]; j++, k++)
-			array[k] = rad[i][j];
+		{
+			if (array[k] != rad[i][j])
+			{
+				array[k] = rad[i][j];
+				swap = 1;
+			}
+		}
 	}
-	print_array(array, size);
+	if (swap == 1)
+		print_array(array, size);
 }
