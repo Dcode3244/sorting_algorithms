@@ -1,6 +1,6 @@
 #include "sort.h"
 
-void init_rad(int **rad, int *counter);
+void init_rad(int **rad, int *counter, int *dup);
 void swap(int **rad, int *array, int *counter, int size);
 /**
  * radix_sort - sorts an array of integers in ascending order
@@ -35,9 +35,11 @@ void radix_sort(int *array, size_t size)
 
 		rad = malloc(sizeof(int *) * 10);
 		if (rad == NULL)
+		{
+			free(dup);
 			return;
-
-		init_rad(rad, counter);
+		}
+		init_rad(rad, counter, dup);
 
 		for (i = 0; i < (int)size; i++)
 			dup[i] = (array[i] % mod) / div;
@@ -72,8 +74,10 @@ void radix_sort(int *array, size_t size)
  * to the numbers LSD
  * @rad: the storage bucked
  * @counter: number of repetition for each LSD
+ * @dup: array containing the swaping index of the original
+ * array
  */
-void init_rad(int **rad, int *counter)
+void init_rad(int **rad, int *counter, int *dup)
 {
 	int i, j;
 
@@ -85,7 +89,16 @@ void init_rad(int **rad, int *counter)
 		{
 			rad[i] = malloc(sizeof(int) * counter[i]);
 			if (rad[i] == NULL)
+			{
+				for (i -= 1; i >= 0; i--)
+				{
+					if (rad[i] != NULL)
+						free(rad[i]);
+				}
+				free(rad);
+				free(dup);
 				return;
+			}
 			for (j = 0; j < counter[i]; j++)
 				rad[i][j] = -1;
 		}
