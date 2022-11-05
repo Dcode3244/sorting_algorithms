@@ -56,7 +56,15 @@ void radix_sort(int *array, size_t size)
 		swap(rad, array, counter, size);
 		mod *= 10;
 		div *= 10;
+
+		for (i = 0; i < 10; i++)
+		{
+			if (rad[i] != NULL)
+				free(rad[i]);
+		}
+		free(rad);
 	}
+	free(dup);
 }
 
 /**
