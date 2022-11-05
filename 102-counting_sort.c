@@ -12,6 +12,9 @@ void counting_sort(int *array, size_t size)
 	size_t i;
 	int *count, *ordered;
 
+	if (size < 2 || array == NULL)
+		return;
+
 	for (i = 0; i < size; i++)
 		if (k < array[i])
 			k = array[i];
@@ -28,7 +31,6 @@ void counting_sort(int *array, size_t size)
 
 	for (i = 1; i <= (size_t)k; i++)
 		count[i] += count[i - 1];
-
 	print_array(count, k + 1);
 
 	ordered = malloc(sizeof(int) * size);
