@@ -11,6 +11,8 @@ void swap(int *a, int *b);
  */
 void quick_sort_hoare(int *array, size_t size)
 {
+	if (size < 2)
+		return;
 	_quick_sort(array, 0, size - 1, size);
 }
 
