@@ -63,7 +63,7 @@ int partition(int *array, int lo, int hi, size_t size)
 		} while (array[j] > pvt);
 
 		if (i >= j)
-			return (j);
+			return (i);
 		swap(&array[i], &array[j]);
 		print_array(array, size);
 	}
