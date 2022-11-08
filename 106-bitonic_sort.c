@@ -36,14 +36,14 @@ void _bitonic_sort(int *array, size_t size, size_t N, int lo, int direction)
 		return;
 
 	printf("Merging [%ld/%ld] (%s)\n", size, N,
-			direction ? "UP" : "DOWN");
+			direction ? "UP:" : "DOWN:");
 	print_array(array + lo, size);
 	half = size / 2;
 	_bitonic_sort(array, half, N, lo, INCR);
 	_bitonic_sort(array, half, N, lo + half, DECR);
 	_bitonic_merge(array, size, lo, direction);
 	printf("Result [%ld/%ld] (%s)\n", size, N,
-			direction ? "UP" : "DOWN");
+			direction ? "UP:" : "DOWN:");
 	print_array(array + lo, size);
 }
 
