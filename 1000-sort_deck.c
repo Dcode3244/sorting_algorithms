@@ -83,27 +83,28 @@ void insertion_sort_suit(deck_node_t **deck)
  */
 void set_a_b(deck_node_t *next, deck_node_t *prev, int *a, int *b)
 {
-	if (*(prev->card->value) == 'A')
-		*a = 1;
-	else if (*(prev->card->value) == 'J')
-		*a = 11;
-	else if (*(prev->card->value) == 'Q')
-		*a = 12;
-	else if (*(prev->card->value) == 'K')
-		*a = 13;
-	else
-		*a = atoi(prev->card->value);
+	int i;
+	char var[4] = {'A', 'J', 'Q', 'K'};
+	int val[4] = {1, 11, 12, 13};
 
-	if (*(next->card->value) == 'A')
-		*b = 1;
-	else if (*(next->card->value) == 'J')
-		*b = 11;
-	else if (*(next->card->value) == 'Q')
-		*b = 12;
-	else if (*(next->card->value) == 'K')
-		*b = 13;
-	else
+	for (i = 0; i < 4; i++)
+	{
+		if (*(prev->card->value) == var[i])
+		{
+			*a = val[i];
+			break;
+		}
+		*a = atoi(prev->card->value);
+	}
+	for (i = 0; i < 4; i++)
+	{
+		if (*(next->card->value) == var[i])
+		{
+			*b = val[i];
+			break;
+		}
 		*b = atoi(next->card->value);
+	}
 }
 
 /**
